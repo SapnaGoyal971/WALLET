@@ -1,4 +1,4 @@
-package com.example.demo.Service;
+package com.example.demo;
 
 import com.example.demo.Classes.Transaction;
 import com.example.demo.Classes.Wallet;
@@ -6,8 +6,9 @@ import com.example.demo.Repositories.TransactionRepository;
 import com.example.demo.Repositories.WalletRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
-import java.util.List;
 
 @Service
 public class WalletService {
@@ -16,6 +17,7 @@ public class WalletService {
     WalletRepository walletRepository;
     @Autowired
     TransactionRepository transactionRepository;
+
 
     public String createWallet(Wallet wallet){
         try {
@@ -72,13 +74,10 @@ public class WalletService {
         }
     }
 
-    public List<Transaction> getTransactionSummary(Long userId){
+    public Page<Transaction> getTransactionSummary(Long userId,int pageNumber){
         try {
             Wallet wallet = walletRepository.findByUserId(userId);
-            List<Transaction> transactionListAsPayee = transactionRepository.findByPayeePhoneNumber(wallet.getPhoneNumber());
-            List<Transaction> transactionListAsPayer = transactionRepository.findByPayerPhoneNumber(wallet.getPhoneNumber());
-            transactionListAsPayee.addAll(transactionListAsPayer);
-            return transactionListAsPayee;
+            return transactionRepository.findByPayeePhoneNumberOrPayerPhoneNumber(wallet.getPhoneNumber(), wallet.getPhoneNumber(),PageRequest.of(pageNumber,1));
         }
         catch (NullPointerException n){
             return null;

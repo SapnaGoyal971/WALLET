@@ -1,6 +1,6 @@
 package com.example.demo.Classes;
 
-public class Request {
+public class RequestClass {
     private Long phoneNumber;
 
     public Long getPhoneNumber() {
