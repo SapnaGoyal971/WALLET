@@ -49,7 +49,7 @@ public class WalletService {
                 transaction.setStatus(Transaction.Status.SUCCESS);
                 transactionRepository.save(transaction);
 
-                return "Transfer Successful.";
+                return "Transfer Successful with transaction Id: "+transaction.getTxnID() ;
             } else {
                 transaction.setStatus(Transaction.Status.FAILURE);
                 transactionRepository.save(transaction);
