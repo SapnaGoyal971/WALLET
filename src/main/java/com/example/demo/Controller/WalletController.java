@@ -1,9 +1,10 @@
-package com.example.demo;
+package com.example.demo.Controller;
 
 import com.example.demo.Classes.Request;
 import com.example.demo.Classes.Transaction;
 import com.example.demo.Classes.TransferDetails;
 import com.example.demo.Classes.Wallet;
+import com.example.demo.Service.WalletService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
