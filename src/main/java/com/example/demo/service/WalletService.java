@@ -78,7 +78,7 @@ public class WalletService {
     public Page<Transaction> getTransactionSummary(Long userId,int pageNumber){
         try {
             Wallet wallet = walletRepository.findByUserId(userId);
-            return transactionRepository.findByPayeePhoneNumberOrPayerPhoneNumber(wallet.getPhoneNumber(), wallet.getPhoneNumber(),PageRequest.of(pageNumber,1));
+            return transactionRepository.findByPayeePhoneNumberOrPayerPhoneNumberOrderByTimestamp(wallet.getPhoneNumber(), wallet.getPhoneNumber(),PageRequest.of(pageNumber,1));
         }
         catch (NullPointerException n){
             return null;
