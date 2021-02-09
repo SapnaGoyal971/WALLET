@@ -4,26 +4,19 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static sun.nio.cs.Surrogate.is;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 
 import com.example.demo.Classes.RequestClass;
-import org.hamcrest.Matchers;
-import org.junit.Assert;
+import com.example.demo.service.WalletService;
 import org.junit.Before;
 import static org.hamcrest.Matchers.containsString;
 
-import com.example.demo.Classes.Transaction;
 import com.example.demo.Classes.Wallet;
-import com.example.demo.Repositories.TransactionRepository;
-import com.example.demo.Repositories.WalletRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 //import org.aspectj.lang.annotation.Before;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
-import org.omg.CORBA.Any;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -31,8 +24,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 

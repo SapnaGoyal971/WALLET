@@ -1,9 +1,10 @@
-package com.example.demo;
+package com.example.demo.Controller;
 
 import com.example.demo.Classes.RequestClass;
 import com.example.demo.Classes.Transaction;
 import com.example.demo.Classes.TransferDetails;
 import com.example.demo.Classes.Wallet;
+import com.example.demo.service.WalletService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +14,8 @@ public class WalletController {
 
     @Autowired
     WalletService walletService;
+
+
 
     @RequestMapping(method = RequestMethod.POST, value = "/wallet")
     public String createWallet(@RequestBody RequestClass request){
