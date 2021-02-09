@@ -1,6 +1,7 @@
 package com.example.demo.Classes;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 
 @Embeddable
 @Entity
@@ -10,6 +11,7 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long txnID;
 
+    private Timestamp timestamp;
     private long amount;
     private long payerPhoneNumber;
     private long payeePhoneNumber;
@@ -22,8 +24,16 @@ public class Transaction {
         this.payeePhoneNumber=payeePhoneNumber;
         this.payerPhoneNumber=payerPhoneNumber;
         this.amount=amount;
+        this.timestamp= new Timestamp(System.currentTimeMillis());
     }
 
+    public Timestamp getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Timestamp timestamp) {
+        this.timestamp = timestamp;
+    }
 
     public long getTxnID() {
         return txnID;

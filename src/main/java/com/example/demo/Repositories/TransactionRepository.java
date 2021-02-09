@@ -8,6 +8,6 @@ import org.springframework.data.repository.CrudRepository;
 public interface TransactionRepository extends CrudRepository<Transaction,Long> {
 
     public Transaction findByTxnID(Long id);
-    public Page<Transaction> findByPayeePhoneNumberOrPayerPhoneNumber(Long phn, Long phn2, Pageable pageable);
+    public Page<Transaction> findByPayeePhoneNumberOrPayerPhoneNumberOrderByTimestamp(Long phn, Long phn2, Pageable pageable);
 
 }
