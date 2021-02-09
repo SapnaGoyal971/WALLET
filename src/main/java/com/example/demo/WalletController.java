@@ -14,11 +14,15 @@ public class WalletController {
     @Autowired
     WalletService walletService;
 
-
     @RequestMapping(method = RequestMethod.POST, value = "/wallet")
     public String createWallet(@RequestBody RequestClass request){
-        Wallet wallet = new Wallet(request.getPhoneNumber());
-           return walletService.createWallet(wallet);
+        try {
+           Wallet wallet = walletService.createWallet(request);
+            return "Wallet Created Successfully" + " with User Id: "+wallet.getUserId() ;
+
+        }
+        catch (NullPointerException n) {
+            return "Wallet with this Phone number already exists";}
         }
 
     @RequestMapping(method = RequestMethod.GET, value = "/transaction")

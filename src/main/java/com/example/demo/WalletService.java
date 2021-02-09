@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import com.example.demo.Classes.RequestClass;
 import com.example.demo.Classes.Transaction;
 import com.example.demo.Classes.Wallet;
 import com.example.demo.Repositories.TransactionRepository;
@@ -19,15 +20,15 @@ public class WalletService {
     TransactionRepository transactionRepository;
 
 
-    public String createWallet(Wallet wallet){
-        try {
+    public Wallet createWallet(RequestClass requestClass){
+        Wallet wallet = new Wallet(requestClass.getPhoneNumber());
+   try {
             walletRepository.save(wallet);
-            return "Wallet Created Successfully"+ " with User Id: "+wallet.getUserId();
-
+            return wallet;
         }
         catch (DataIntegrityViolationException d){
-            return "Wallet with this Phone number already exists";
-        }
+            return null;
+          }
     }
 
     public String transferMoney(Long payeePhoneNumber, Long payerPhoneNumber, Long amount){
